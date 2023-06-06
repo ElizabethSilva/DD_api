@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="../style.css">
+    <title>Cadastro de Doenças</title>
+</head>
+
+<body>
+    <header id="header">
+        <nav>
+            <div class="container">
+                <div class="text-center">
+                    <a href="/frontend/main.html" class="nav-brand text-dark">API D&D</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main id="site-main">
+        <div class="container">
+            <div class="box-nav d-flex justify-between">
+                <div class="filter">
+                    <a href="../main.html"><i class="fas fa-angle-double-left"></i> Inicio</a>
+                </div>
+                <div class="filter">
+                    <a href="../tabelas/doenca.html"></i>Todas as doenças <i class="fas fa-angle-double-right"></i></a>
+                </div>
+            </div>
+            <div class="form-title text-center">
+                <h2 class="text-dark">Nova Doença</h2>
+                <span class="text-light">Use o formulário abaixo para adionar uma nova doença!</span>
+            </div>
+            <form action="/defensivos" method="POST" id="add_doenca">
+                <div class="new_doenca">
+                    <div class="form-group">
+                        <label for="nome" class="text-light">Nome</label>
+                        <input type="text" name="nome" id="nome" placeholder="Nome da doença" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="data" class="text-light">Data</label>
+                        <input type="date" name="data" id="data" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="sintomas" class="text-light">Sintomas</label>
+                        <input type="text" name="sintomas" id="sintomas" placeholder="Sintomas da doença" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="tratamento" class="text-light">Tratamento</label>
+                        <input type="text" name="tratamento" id="tratamento" placeholder="Descreva o tratamento"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <select name="gravidade" placeholder="Gravidade" id="gravidade" class="input-form1 select-form"
+                            style="background-color: white;" required>
+                            <option value="" disabled selected>Gravidade</option>
+                            <option value="Leve">Leve</option>
+                            <option value="Moderado">Moderado</option>
+                            <option value="Severo">Severo</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button id="saveButton" type="submit" class="btn text-dark update">Salvar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+
+</body>
+
+<script>
+    // Obtém uma referência ao formulário
+    const form = document.getElementById('add_doenca');
+
+    // Define o evento de envio do formulário
+    form.addEventListener('submit', (event) => {
+        event.preventDefault(); // Impede o comportamento padrão de envio do formulário
+
+        // Obtém os valores dos campos do formulário
+        const nome = document.getElementById('nome').value;
+        const data = document.getElementById('data').value;
+        const sintomas = document.getElementById('sintomas').value;
+        const tratamento = document.getElementById('tratamento').value;
+        const gravidade = document.getElementById('gravidade').value;
+
+        // Cria um objeto com os dados do formulário
+        const formData = {
+            nome: nome,
+            data: data,
+            sintomas: sintomas,
+            tratamento: tratamento,
+            gravidade: gravidade
+        };
+
+        // Envia os dados para a API usando o método POST
+        fetch('http://localhost:3000/doencas', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('Erro ao enviar o formulário');
+                }
+                return response.json();
+            })
+            .then((data) => {
+                console.log('Formulário enviado com sucesso', data);
+                // Faça o que desejar após o envio bem-sucedido do formulário
+                
+                alert("Formulário enviado com sucesso!");
+            })
+            .catch((error) => {
+                console.error(error);
+                // Trate o erro de envio do formulário
+            });
+    });
+</script>
+
+
+</html>

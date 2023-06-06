@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="../style.css">
+    <title>Cadastro de Defensivos</title>
+</head>
+
+<header id="header">
+    <nav>
+        <div class="container">
+            <div class="text-center">
+                <a href="/frontend/main.html" class="nav-brand text-dark">API D&D</a>
+            </div>
+        </div>
+    </nav>
+</header>
+<main id="site-main">
+    <div class="container">
+        <div class="box-nav d-flex justify-between">
+            <div class="filter">
+                <a href="../main.html"><i class="fas fa-angle-double-left"></i> Inicio</a>
+            </div>
+            <div class="filter">
+                <a href="../tabelas/defensivo.html">Todos os defensivos <i class="fas fa-angle-double-right"></i></a>
+            </div>
+        </div>
+        <div class="form-title text-center">
+            <h2 class="text-dark">Novo Defensivo</h2>
+            <span class="text-light">Use o formulário abaixo para adionar um novo defensivo!</span>
+        </div>
+        <form action="/defensivos" method="POST" id="add_defensivo">
+            <div class="new_defensivo">
+                <div class="form-group">
+                    <label for="name" class="text-light">Nome</label>
+                    <input type="text" name="name" id="name" placeholder="Nome do defensivo" required>
+                </div>
+                <div class="form-group">
+                    <label for="valor" class="text-light">Valor</label>
+                    <input type="text" name="valor" id="valor" placeholder="00,00" required>
+                </div>
+                <div class="form-group">
+                    <label for="data" class="text-light">Data</label>
+                    <input type="text" name="data" id="data" placeholder="01/01/2023" required>
+                </div>
+                <div class="form-group">
+                    <label for="descricao" class="text-light">Descrição</label>
+                    <input type="text" name="descricao" id="descricao" placeholder="Descreva sobre o defensivo"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="fabricante" class="text-light">Fabricante</label>
+                    <input type="text" name="fabricante" id="fabricante" placeholder="Nome do fabricante" required>
+                </div>
+
+                <div class="form-group">
+                    <button id="saveButton" type="submit" class="btn text-dark update">Salvar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+</main>
+</body>
+
+<script>
+    // Obtém uma referência ao formulário
+    const form = document.getElementById('add_defensivo');
+
+    // Define o evento de envio do formulário
+    form.addEventListener('submit', (event) => {
+        event.preventDefault(); // Impede o comportamento padrão de envio do formulário
+
+        // Obtém os valores dos campos do formulário
+        const name = document.getElementById('name').value;
+        const valor = document.getElementById('valor').value;
+        const data = document.getElementById('data').value;
+        const descricao = document.getElementById('descricao').value;
+        const fabricante = document.getElementById('fabricante').value;
+
+        // Cria um objeto com os dados do formulário
+        const formData = {
+            name: name,
+            valor: valor,
+            data: data,
+            descricao: descricao,
+            fabricante: fabricante
+        };
+
+        // Envia os dados para a API usando o método POST
+        fetch('http://localhost:3000/defensivos', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('Erro ao enviar o formulário');
+                }
+                return response.json();
+            })
+            .then((data) => {
+                console.log('Formulário enviado com sucesso', data);
+                // Faça o que desejar após o envio bem-sucedido do formulário
+
+                alert("Formulário enviado com sucesso!");
+            })
+            .catch((error) => {
+                console.error(error);
+                // Trate o erro de envio do formulário
+            });
+    });
+</script>
+
+</html>

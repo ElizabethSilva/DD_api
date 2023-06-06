@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tabela com Todos os defensivos</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+    <header id="header">
+        <nav>
+            <div class="container">
+                <div class="text-center">
+                    <a href="/frontend/tabelas/defensivo.html" class="nav-brand text-dark">DEFENSIVOS</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main id="site-main">
+        <div class="container">
+            <div class="box-nav d-flex justify-between">
+                <div class="filter">
+                    <a href="/frontend/main.html"><i class="fas fa-angle-double-left"></i> Inicio</a>
+                </div>
+                <div class="filter">
+                    <a href="/frontend/Cadastro/defensivo.html"></i>Adicionar um defensivo <i
+                            class="fas fa-angle-double-right"></i></a>
+                </div>
+            </div>
+            <table id="myTable">
+                <tr>
+                    <th>Nome</th>
+                    <th>Valor</th>
+                    <th>Data</th>
+                    <th>Descrição</th>
+                    <th>Fabricante</th>
+                    <th>Editar</th>
+                </tr>
+            </table>
+        </div>
+</body>
+
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            url: "http://localhost:3000/defensivos",
+            method: "GET",
+            success: function (data) {
+                // Itera sobre os registros retornados pela API
+                $.each(data, function (index, record) {
+                    // Cria uma nova linha na tabela para cada registro
+                    var newRow = $("<tr>");
+
+                    // Preenche as células da linha com os dados do registro
+                    newRow.append($("<td>").text(record.name));
+                    newRow.append($("<td>").text(record.valor));
+                    newRow.append($("<td>").text(record.data));
+                    newRow.append($("<td>").text(record.descricao));
+                    newRow.append($("<td>").text(record.fabricante));
+                        
+                    newRow.append($("<button>").text("Deletar"));
+
+
+                    // Adiciona a nova linha à tabela
+                    $("#myTable").append(newRow);
+                });
+            },
+            error: function () {
+                console.log("Erro ao carregar os dados da API.");
+            }
+        });
+    });
+
+</script>
+
+</html>
