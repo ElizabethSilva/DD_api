@@ -66,7 +66,7 @@
             </div>
         </form>
     </div>
-    
+
 </main>
 </body>
 
@@ -77,6 +77,8 @@
     // Define o evento de envio do formulário
     form.addEventListener('submit', (event) => {
         event.preventDefault(); // Impede o comportamento padrão de envio do formulário
+
+        submitButton.disabled = true;
 
         // Obtém os valores dos campos do formulário
         const name = document.getElementById('name').value;
@@ -110,13 +112,11 @@
             })
             .then((data) => {
                 console.log('Formulário enviado com sucesso', data);
-                // Faça o que desejar após o envio bem-sucedido do formulário
 
                 alert("Formulário enviado com sucesso!");
             })
             .catch((error) => {
                 console.error(error);
-                // Trate o erro de envio do formulário
             });
     });
 </script>

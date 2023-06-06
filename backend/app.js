@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const cors = require('cors'); //ADICIONEI ISSO É NOVO
+const cors = require('cors');
 
 const app = express();
 const port = 3000;
@@ -9,7 +9,6 @@ const port = 3000;
 // Configure body-parser to handle JSON data
 app.use(bodyParser.json());
 
-// Habilitar o CORS ISSO TBM É NOVO 
 app.use(cors());
 
 // Connect to MongoDB
@@ -18,10 +17,10 @@ mongoose.connect('mongodb+srv://DD_API:itsQl4ZPxqd9D6MS@cluster0.baej0jh.mongodb
   useUnifiedTopology: true,
 });
 
-// Create a Mongoose model for Doenca
+// Cria a Mongoose model for Doenca
 const Doenca = require('./models/doenca');
 
-// Create a Mongoose model for Defensivo
+// Cria a Mongoose model for Defensivo
 const Defensivo = require('./models/defensivo');
 
 // Define routes for Doenca CRUD operations
