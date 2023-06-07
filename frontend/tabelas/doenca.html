@@ -30,7 +30,7 @@
         <div class="container">
             <div class="box-nav d-flex justify-between">
                 <div class="filter">
-                    <a href="../main.html"><i class="fas fa-angle-double-left"></i> Inicio</a>
+                    <a href="../main.html"><i class="fas fa-angle-double-left"></i> Início</a>
                 </div>
                 <div class="filter">
                     <a href="../Cadastro/doenca.html"></i>Adicionar uma Doença <i
@@ -44,7 +44,6 @@
                     <th>Sintomas</th>
                     <th>Tratamento</th>
                     <th>Gravidade</th>
-                    <th>Editar</th>
                 </tr>
             </table>
         </div>
@@ -67,32 +66,6 @@
                     newRow.append($("<td>").text(record.sintomas));
                     newRow.append($("<td>").text(record.tratamento));
                     newRow.append($("<td>").text(record.gravidade));
-
-                    var deleteButton = $("<button>").text("Deletar");
-                    deleteButton.click(function () {
-                        var id = record.id; // Assumindo que a propriedade 'id' contém o ID do registro
-
-                        // Exibir um aviso de confirmação
-                        var confirmDelete = confirm("Tem certeza de que deseja excluir este registro?");
-
-                        // Se o usuário confirmar a exclusão
-                        if (confirmDelete) {
-                            // Solicitação AJAX para excluir o registro
-                            $.ajax({
-                                url: "/doencas/:id",
-                                method: "DELETE",
-                                success: function () {
-                                    // Remover a linha da tabela após a exclusão bem-sucedida
-                                    newRow.remove();
-                                },
-                                error: function () {
-                                    console.log("Erro ao excluir o registro.");
-                                }
-                            });
-                        }
-                    });
-
-                    newRow.append(deleteButton);
 
                     // Adiciona a nova linha à tabela
                     $("#myTable").append(newRow);

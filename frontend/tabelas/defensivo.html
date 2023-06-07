@@ -30,10 +30,10 @@
         <div class="container">
             <div class="box-nav d-flex justify-between">
                 <div class="filter">
-                    <a href="/frontend/main.html"><i class="fas fa-angle-double-left"></i> Inicio</a>
+                    <a href="/frontend/main.html"><i class="fas fa-angle-double-left"></i> Início</a>
                 </div>
                 <div class="filter">
-                    <a href="/frontend/Cadastro/defensivo.html"></i>Adicionar um defensivo <i
+                    <a href="/frontend/Cadastro/defensivo.html"></i>Adicionar um Defensivo <i
                             class="fas fa-angle-double-right"></i></a>
                 </div>
             </div>
@@ -44,7 +44,6 @@
                     <th>Data</th>
                     <th>Descrição</th>
                     <th>Fabricante</th>
-                    <th>Editar</th>
                 </tr>
             </table>
         </div>
@@ -68,9 +67,6 @@
                     newRow.append($("<td>").text(record.descricao));
                     newRow.append($("<td>").text(record.fabricante));
                         
-                    newRow.append($("<button>").text("Deletar"));
-
-
                     // Adiciona a nova linha à tabela
                     $("#myTable").append(newRow);
                 });

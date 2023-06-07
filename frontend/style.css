@@ -13,9 +13,17 @@
 
 a {
     color: var(--light);
-    text-decoration: none;
+    text-decoration: none !important;
     font-family: 'PT Sans', sans-serif;
     font-size: medium;
+}
+
+.btn-outline-info {
+    margin-top: 20px;
+    margin-right: 20px;
+    --bs-btn-color: #06d6a0 !important;
+    --bs-btn-border-color: #06d6a0 !important;
+    --bs-btn-hover-bg: #06d6a0 !important;
 }
 
 .container {
@@ -157,6 +165,15 @@ td {
 
 th {
     background-color: #f2f2f2;
+    margin-top: 10px;
+}
+
+.box-nav.d-flex.justify-between {
+    margin: 10px;
+}
+
+.navbar.navbar-expand-lg.bg-body {
+    background-color: #06d6a0 !important;
 }
 
 .table td,

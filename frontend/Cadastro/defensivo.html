@@ -26,7 +26,7 @@
     <div class="container">
         <div class="box-nav d-flex justify-between">
             <div class="filter">
-                <a href="../main.html"><i class="fas fa-angle-double-left"></i> Inicio</a>
+                <a href="../main.html"><i class="fas fa-angle-double-left"></i> Início</a>
             </div>
             <div class="filter">
                 <a href="../tabelas/defensivo.html">Todos os defensivos <i class="fas fa-angle-double-right"></i></a>
@@ -52,7 +52,7 @@
                 </div>
                 <div class="form-group">
                     <label for="descricao" class="text-light">Descrição</label>
-                    <input type="text" name="descricao" id="descricao" placeholder="Descreva sobre o defensivo"
+                    <input type="text" name="descricao" id="descricao" placeholder="Descrição do defensivo"
                         required>
                 </div>
                 <div class="form-group">
@@ -77,8 +77,6 @@
     // Define o evento de envio do formulário
     form.addEventListener('submit', (event) => {
         event.preventDefault(); // Impede o comportamento padrão de envio do formulário
-
-        submitButton.disabled = true;
 
         // Obtém os valores dos campos do formulário
         const name = document.getElementById('name').value;

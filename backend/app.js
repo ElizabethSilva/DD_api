@@ -50,7 +50,7 @@ app.get('/doencas/:id', (req, res) => {
   Doenca.findById(req.params.id)
     .then((doenca) => {
       if (!doenca) {
-        throw new Error('Doenca not found');
+        throw new Error('Doença não encontrada!');
       }
       res.json(doenca);
     })
@@ -63,7 +63,7 @@ app.put('/doencas/:id', (req, res) => {
   Doenca.findByIdAndUpdate(req.params.id, req.body, { new: true })
     .then((updatedDoenca) => {
       if (!updatedDoenca) {
-        throw new Error('Doenca not found');
+        throw new Error('Doença não encontrada!');
       }
       res.json(updatedDoenca);
     })
@@ -76,7 +76,7 @@ app.delete('/doencas/:id', (req, res) => {
   Doenca.findByIdAndRemove(req.params.id)
     .then((removedDoenca) => {
       if (!removedDoenca) {
-        throw new Error('Doenca not found');
+        throw new Error('Doença não encontrada!');
       }
       res.json(removedDoenca);
     })
@@ -112,7 +112,7 @@ app.get('/defensivos/:id', (req, res) => {
   Defensivo.findById(req.params.id)
     .then((defensivo) => {
       if (!defensivo) {
-        throw new Error('Defensivo not found');
+        throw new Error('Defensivo não encontrado!');
       }
       res.json(defensivo);
     })
@@ -125,7 +125,7 @@ app.put('/defensivos/:id', (req, res) => {
   Defensivo.findByIdAndUpdate(req.params.id, req.body, { new: true })
     .then((updatedDefensivo) => {
       if (!updatedDefensivo) {
-        throw new Error('Defensivo not found');
+        throw new Error('Defensivo não encontrado');
       }
       res.json(updatedDefensivo);
     })
@@ -138,7 +138,7 @@ app.delete('/defensivos/:id', (req, res) => {
   Defensivo.findByIdAndRemove(req.params.id)
     .then((removedDefensivo) => {
       if (!removedDefensivo) {
-        throw new Error('Defensivo not found');
+        throw new Error('Defensivo não encontrado');
       }
       res.json(removedDefensivo);
     })
